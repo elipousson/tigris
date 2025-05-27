@@ -63,6 +63,7 @@ tigris_cache_dir <- function(path) {
 #' (stored in temporary directory or TIGRIS_CACHE_DIR depending on the configuration of
 #' global option "tigris_use_cache"). Defaults to FALSE.
 #' @param filter_by Geometry used to filter the output returned by the function.  Can be an sf object, an object of class `bbox`, or a length-4 vector of format `c(xmin, ymin, xmax, ymax)` that can be converted to a bbox. Geometries that intersect the input to `filter_by` will be returned.
+#' @param crs Output coordinate reference system. Defaults to `NULL`.
 #' @param protocol Character string specifying the protocol to use for downloading files. Options are "ftp" or "http" (default). If "ftp", the URL will be modified to use FTP instead of HTTPS.
 #' @param timeout Integer specifying the timeout in seconds for download operations. Defaults to 300 (5 minutes) to handle large files.
 #'
@@ -76,6 +77,7 @@ load_tiger <- function(
     progress_bar = TRUE,
     keep_zipped_shapefile = FALSE,
     filter_by = NULL,
+    crs = NULL,
     protocol = getOption("tigris_protocol", "http"),
     timeout = 1800
 ) {
@@ -402,6 +404,10 @@ load_tiger <- function(
     if ("CO" %in% names(obj)) {
         obj$COUNTYFP <- obj$CO
         obj$STATEFP <- obj$ST
+    }
+
+    if (!is.null(crs)) {
+        obj <- sf::st_transform(obj, crs = crs)
     }
 
     if (class == "sp") {

@@ -12,6 +12,7 @@ load_tiger(
   progress_bar = TRUE,
   keep_zipped_shapefile = FALSE,
   filter_by = NULL,
+  crs = NULL,
   protocol = getOption("tigris_protocol", "http"),
   timeout = 1800
 )
@@ -35,6 +36,8 @@ set in "tigris_refresh" option if a value (TRUE or FALSE) is provided.}
 global option "tigris_use_cache"). Defaults to FALSE.}
 
 \item{filter_by}{Geometry used to filter the output returned by the function.  Can be an sf object, an object of class \code{bbox}, or a length-4 vector of format \code{c(xmin, ymin, xmax, ymax)} that can be converted to a bbox. Geometries that intersect the input to \code{filter_by} will be returned.}
+
+\item{crs}{Output coordinate reference system. Defaults to \code{NULL}.}
 
 \item{protocol}{Character string specifying the protocol to use for downloading files. Options are "ftp" or "http" (default). If "ftp", the URL will be modified to use FTP instead of HTTPS.}
 
