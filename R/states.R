@@ -174,7 +174,9 @@ grep_state <- function(states, term) {
 #' }
 list_states <- function(states, sorted = TRUE) {
     if (is_tigris(states) & tigris_type(states) == "state") {
-        if (sorted) return(sort(states@data$NAME))
-        return(states@data$NAME)
+        if (sorted) {
+            return(sort(states$NAME))
+        }
+        return(states$NAME)
     }
 }
