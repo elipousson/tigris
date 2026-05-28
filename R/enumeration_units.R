@@ -252,7 +252,7 @@ tracts <- function(
     if (is.null(state)) {
         if (year > 2018 && cb) {
             state <- "us"
-            cli_inform("Retrieving Census tracts for the entire United States")
+            cli_bullets("Retrieving Census tracts for the entire United States")
         } else {
             cli_abort(
                 "A state must be specified for this year/dataset combination."
@@ -451,7 +451,7 @@ school_districts <- function(
     if (is.null(state)) {
         if (year > 2018 && cb) {
             state <- "us"
-            cli_inform(
+            cli_bullets(
                 "Retrieving school districts for the entire United States"
             )
         } else {
@@ -550,7 +550,7 @@ block_groups <- function(
     if (is.null(state)) {
         if (year > 2018 && cb) {
             state <- "us"
-            cli_inform(
+            cli_bullets(
                 "Retrieving Census block groups for the entire United States"
             )
         } else {
@@ -765,7 +765,7 @@ zctas <- function(
     cache <- getOption("tigris_use_cache")
 
     if (is.null(cache)) {
-        cli_inform(
+        cli_bullets(
             c(
                 "!" = "ZCTAs can take several minutes to download.",
                 "*" = "Set `options(tigris_use_cache = TRUE)` to cache the data and avoid re-downloading in future R sessions."
@@ -845,7 +845,7 @@ zctas <- function(
 
     # Handle split ZCTAs in 2000 CB file
     if (year == 2000 && cb) {
-        cli_inform(
+        cli_bullets(
             c(
                "!" = "CB ZCTAs for 2000 include separate polygons for discontiguous parts.",
                 "*" = "Combine by summarizing over the ZCTA column but note that this can be a time-consuming operation."

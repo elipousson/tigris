@@ -42,10 +42,12 @@ tigris_cache_dir <- function(path) {
     var <- paste0("TIGRIS_CACHE_DIR=", "'", path, "'")
 
     write(var, renv, sep = "\n", append = TRUE)
-    cli_inform(sprintf(
-        "Your new tigris cache directory is %s. \nTo use now, restart R or run `readRenviron('~/.Renviron')`",
-        path
-    ))
+    cli_bullets(
+        c(
+          "i" = "Your new tigris cache directory is {.path path}.",
+          "*" = "To use now, restart R or run `readRenviron('~/.Renviron')`"
+        )
+    )
 }
 
 
@@ -171,7 +173,7 @@ load_tiger <- function(
                     i <- 1
 
                     while (i < 4) {
-                        cli_inform(
+                        cli_bullets(
                             "Previous download failed.  Re-download attempt{i}s of 3..."
                         )
 
@@ -219,7 +221,7 @@ load_tiger <- function(
 
                             # If using HTTP protocol and about to make final retry, try FTP as fallback
                             if (i == 3 && protocol == "http") {
-                                cli_inform(
+                                cli_bullets(
                                     "HTTP download failed, trying FTP as fallback..."
                                 )
                                 ftp_url <- gsub(
@@ -332,7 +334,7 @@ load_tiger <- function(
 
         # If HTTP download failed, try FTP as fallback
         if (!unzip_result && protocol == "http") {
-            cli_inform("HTTP download failed, trying FTP as fallback...")
+            cli_bullets("HTTP download failed, trying FTP as fallback...")
             ftp_url <- gsub("^https://www2", "ftp://ftp2", original_url)
 
             # Try FTP download
@@ -894,7 +896,7 @@ erase_water <- function(input_sf, area_threshold = 0.75, year = NULL) {
     county_GEOIDs <- county_overlay$GEOID
 
     # Fetch water for those GEOIDs
-    cli_inform("Fetching area water data for your dataset's location...")
+    cli_bullets("Fetching area water data for your dataset's location...")
     my_water <- lapply(county_GEOIDs, function(cty) {
         suppressMessages(tigris::area_water(
             state = stringr::str_sub(cty, 1, 2),
@@ -908,7 +910,7 @@ erase_water <- function(input_sf, area_threshold = 0.75, year = NULL) {
         sf::st_filter(input_sf) %>% # New step to only erase intersecting water areas
         dplyr::filter(dplyr::percent_rank(AWATER) >= area_threshold)
 
-    cli_inform(
+    cli_bullets(
         "Erasing water area...\nIf this is slow, try a larger area threshold value."
     )
     erased_sf <- suppressMessages(st_erase(input_sf, my_water))

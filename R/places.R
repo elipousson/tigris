@@ -22,7 +22,7 @@ places <- function(state = NULL, cb = FALSE, year = NULL, ...) {
     if (is.null(state)) {
         if (year > 2018 && cb) {
             state <- "us"
-            cli_inform(
+            cli_bullets(
                 "Retrieving Census-designated places for the entire United States"
             )
         } else {

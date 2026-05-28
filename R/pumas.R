@@ -45,7 +45,7 @@ pumas <- function(state = NULL, cb = FALSE, year = NULL, ...) {
     if (is.null(state)) {
         if (year %in% 2019:2020 && cb) {
             state <- "us"
-            cli_inform("Retrieving PUMAs for the entire United States")
+            cli_bullets("Retrieving PUMAs for the entire United States")
         } else {
             cli_abort(
                 "A state must be specified for this year/dataset combination."
@@ -72,7 +72,7 @@ pumas <- function(state = NULL, cb = FALSE, year = NULL, ...) {
         }
 
         if (year == 2020) {
-            cli_inform(
+            cli_bullets(
                 "The 2020 CB PUMAs use the new 2020 PUMA boundary definitions."
             )
             url <- sprintf(

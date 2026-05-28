@@ -83,7 +83,7 @@ congressional_districts <- function(
                 state_codes <- unique(tigris::fips_codes$state_code)
                 state_codes <- state_codes[state_codes != "74"]
                 cds <- lapply(state_codes, function(x) {
-                    suppressMessages(tigris::congressional_districts(
+                    suppressMessages(congressional_districts(
                         state = x,
                         year = year
                     ))
@@ -167,7 +167,7 @@ state_legislative_districts <- function(
     if (is.null(state)) {
         if (year > 2018 && cb) {
             state <- "us"
-            cli_inform(
+            cli_bullets(
                 "Retrieving state legislative districts for the entire United States"
             )
         } else {
@@ -297,7 +297,7 @@ voting_districts <- function(
     if (is.null(state)) {
         if (year > 2018 && cb) {
             state <- "us"
-            cli_inform(
+            cli_bullets(
                 "Retrieving voting districts for the entire United States"
             )
         } else {

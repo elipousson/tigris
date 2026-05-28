@@ -2,8 +2,6 @@
 
     Code
       counties(cb = TRUE, progress_bar = FALSE)
-    Message
-      Retrieving data for the year 2024
     Output
       Simple feature collection with 3235 features and 12 fields
       Geometry type: MULTIPOLYGON
@@ -38,8 +36,6 @@
 
     Code
       counties(progress_bar = FALSE)
-    Message
-      Retrieving data for the year 2024
     Output
       Simple feature collection with 3235 features and 18 fields
       Geometry type: MULTIPOLYGON
@@ -85,8 +81,6 @@
 
     Code
       school_districts(state = state, progress_bar = FALSE)
-    Message
-      Retrieving data for the year 2024
     Output
       Simple feature collection with 48 features and 15 fields
       Geometry type: MULTIPOLYGON
@@ -132,8 +126,6 @@
 
     Code
       tracts(state = state, county = county, progress_bar = FALSE)
-    Message
-      Retrieving data for the year 2024
     Output
       Simple feature collection with 1 feature and 13 fields
       Geometry type: POLYGON
@@ -151,8 +143,6 @@
 
     Code
       block_groups(state = state, county = county, progress_bar = FALSE)
-    Message
-      Retrieving data for the year 2024
     Output
       Simple feature collection with 2 features and 13 fields
       Geometry type: POLYGON
@@ -173,8 +163,6 @@
 
     Code
       blocks(state = state, county = county, progress_bar = FALSE)
-    Message
-      Retrieving data for the year 2024
     Output
       Simple feature collection with 1276 features and 17 fields
       Geometry type: POLYGON
@@ -265,8 +253,6 @@
 
     Code
       county_subdivisions(state = state, county = county, progress_bar = FALSE)
-    Message
-      Retrieving data for the year 2024
     Output
       Simple feature collection with 2 features and 16 fields
       Geometry type: POLYGON
