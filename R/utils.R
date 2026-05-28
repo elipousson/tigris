@@ -123,7 +123,7 @@ match_state_fips <- function(
     }
 
     if (any(long_state)) {
-      cli_inform(
+      cli_bullets(
         "Subsetting first two digits from supplied {.arg {error_arg}} to make valid FIPS codes: {state[long_state]}"
       )
 
@@ -154,7 +154,7 @@ match_state_fips <- function(
 
 #' Check if state is a FIPS code, full name or abbreviation
 #'
-#' [validate_state()] checks if an input state values is a FIPS code, full name
+#' `validate_state()` checks if an input state values is a FIPS code, full name
 #' or abbreviation. If some or all input values are invalid, error if
 #' `require_state = TRUE`, return `NULL` if all inputs are invalid, or warn and
 #' return valid input values.
@@ -237,7 +237,7 @@ validate_state <- function(
       collapse = ", "
     )
 
-    cli_inform(c(
+    cli_bullets(c(
       "*" = "Using FIPS code{?s} {message_parts}"
     ))
   }
@@ -427,7 +427,7 @@ match_county_name <- function(
 
 #' Check if county is a FIPS code, full name or abbreviation.
 #'
-#' [validate_county()] checks if an input `county` is a FIPS code, name or
+#' `validate_county()` checks if an input `county` is a FIPS code, name or
 #' abbreviation. If some or all input values are invalid, error if
 #' `require_county = TRUE`, return `NULL` if all inputs are invalid, or warn and
 #' return valid input values.
@@ -515,13 +515,13 @@ validate_county <- function(
       collapse = ", "
     )
 
-    cli_inform(c(
+    cli_bullets(c(
       "*" = "Using FIPS code{?s} {message_parts}"
     ))
   }
 
   if (.msg && any(na_county_fips)) {
-    cli_inform(c(
+    cli_bullets(c(
       "!" = "Dropping invalid {.arg county} value{?s}: {county[na_county_fips]}"
     ))
   }
@@ -627,7 +627,7 @@ prep_input_sfc <- function(
   }
 
   if (length(input) > 1) {
-    cli_inform(
+    cli_bullets(
       c(
         "!" = "{.arg {arg}} contains multiple geometries and may not work as expected.",
         "i" = "Unioning .arg {arg}} geometries with {.fn sf::st_union}."
@@ -651,7 +651,7 @@ year_suffix <- function(year) {
 
 #' Set default year and validate year for tigris function
 #'
-#' [set_tigris_year()] returns year as a character string.
+#' `set_tigris_year()` returns year as a character string.
 #'
 #' @param year Year to use for download.
 #' @param default Default year to use if "tigris_year" option is not set.
@@ -674,7 +674,7 @@ set_tigris_year <- function(
     year <- getOption("tigris_year", default)
 
     if (!quiet) {
-      cli_inform("Retrieving data for the year {year}")
+      cli_bullets("Retrieving data for the year {year}")
     }
   }
 
