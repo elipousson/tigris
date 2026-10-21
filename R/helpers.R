@@ -64,13 +64,6 @@ tigris_cache_dir <- function(path) {
 #' @param keep_zipped_shapefile If set to TRUE, do not delete zipped shapefile
 #' (stored in temporary directory or TIGRIS_CACHE_DIR depending on the configuration of
 #' global option "tigris_use_cache"). Defaults to FALSE.
-#' @param filter_by Geometry used to filter the output returned by the function.  Can be an sf object, an object of class `bbox`, or a length-4 vector of format `c(xmin, ymin, xmax, ymax)` that can be converted to a bbox. Geometries that intersect the input to `filter_by` will be returned.
-#' @param geos_method Method passed to [sf::st_make_valid()] to repair
-#' `filter_by` if it contains invalid geometries. Must be `"valid_linework"` or
-#' `"valid_structure"` (the default). Ignored if `filter_by` is valid. Also
-#' ignored (with a warning from sf) for longitude/latitude coordinates, which
-#' includes the default NAD83, unless S2 is disabled with
-#' `sf::sf_use_s2(FALSE)`.
 #' @param query Optional OGR SQL query used to select features, passed to
 #' [sf::st_read()]. Each TIGER/Line download contains a single layer named
 #' after the zip file (e.g. `"tl_2025_us_county"`), and the name varies with
@@ -78,6 +71,13 @@ tigris_cache_dir <- function(path) {
 #' `"SELECT * FROM {layer} WHERE STATEFP = '24'"`. Defaults to `NA` (all
 #' features). If `filter_by` is also supplied, the spatial filter is passed to
 #' [sf::st_read()] alongside the query.
+#' @param filter_by Geometry used to filter the output returned by the function.  Can be an sf object, an object of class `bbox`, or a length-4 vector of format `c(xmin, ymin, xmax, ymax)` that can be converted to a bbox. Geometries that intersect the input to `filter_by` will be returned.
+#' @param geos_method Method passed to [sf::st_make_valid()] to repair
+#' `filter_by` if it contains invalid geometries. Must be `"valid_linework"` or
+#' `"valid_structure"` (the default). Ignored if `filter_by` is valid. Also
+#' ignored (with a warning from sf) for longitude/latitude coordinates, which
+#' includes the default NAD83, unless S2 is disabled with
+#' `sf::sf_use_s2(FALSE)`.
 #' @param crs Coordinate reference system to return. `NULL` and `NA` values are
 #' ignored. Passed to [sf::st_transform()]. Defaults to "EPSG:4269" (unless set
 #' using global option "tigris_crs").
